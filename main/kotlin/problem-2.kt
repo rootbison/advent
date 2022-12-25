@@ -38,22 +38,14 @@ data class Round(val oppoShapeCode: Char, val selfShapeCode: Char? = null, val o
             else -> error("error: $outcomeCode")
         }
 
-//        println("oppo: $oppoShape, self: $selfShape, outcome: $outcomeCode")
-        if (outcome === "Draw") {
-            return oppoShape
-        } else if (outcome === "Win") {
-            return when(oppoShape) {
-                "Rock" -> "Paper"
-                "Paper" -> "Scissors"
-                "Scissors" -> "Rock"
-                else -> error("error")
-            }
+        return if (outcome === "Draw") {
+            oppoShape
         } else {
-            return when(oppoShape) {
-                "Rock" -> "Scissors"
-                "Paper" -> "Rock"
-                "Scissors" -> "Paper"
-                else -> error("error")
+            when(outcome to oppoShape) {
+                "Win" to "Rock", "Lose" to "Scissors" -> "Paper"
+                "Win" to "Paper", "Lose" to "Rock" -> "Scissors"
+                "Win" to "Scissors", "Lose" to "Paper" -> "Rock"
+                else -> error("error: outcome $outcome, oppoShape $oppoShape")
             }
         }
     }
