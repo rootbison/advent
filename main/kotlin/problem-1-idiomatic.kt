@@ -14,8 +14,11 @@ fun main(args: Array<String>) {
     }
 
     fun part2(): Int {
-        val sums = parseInput().map { it.sum() }
-        return sums.sorted().takeLast(3).sum()
+        return parseInput()
+            .map { it.sum() }
+            .sorted()
+            .takeLast(3)
+            .sum()
     }
 
     println(part1())
