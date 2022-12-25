@@ -14,18 +14,15 @@ data class Round(val oppoShapeCode: Char, val selfShapeCode: Char? = null, val o
         "Rock" -> 1
         "Paper" -> 2
         "Scissors" -> 3
-        else -> error("error")
+        else -> error("shapeScore")
     }
 
     private fun getOutcomeScore(): Int {
         return if (selfShape === oppoShape) 3
-        else if (
-            (selfShape === "Rock" && oppoShape === "Paper") ||
-            (selfShape === "Paper" && oppoShape === "Scissors") ||
-            (selfShape === "Scissors" && oppoShape === "Rock")) {
-            0
-        } else {
-            6
+        else when(selfShape to oppoShape) {
+            "Rock" to "Paper",  "Paper" to "Scissors", "Scissors" to "Rock" -> 0
+            "Rock" to "Scissors",  "Paper" to "Rock", "Scissors" to "Paper" -> 6
+            else -> error("outcomeScore")
         }
     }
 
@@ -38,16 +35,13 @@ data class Round(val oppoShapeCode: Char, val selfShapeCode: Char? = null, val o
             else -> error("error: $outcomeCode")
         }
 
-        return if (outcome === "Draw") {
-            oppoShape
-        } else {
-            when(outcome to oppoShape) {
+        return if (outcome === "Draw") oppoShape
+        else when(outcome to oppoShape) {
                 "Win" to "Rock", "Lose" to "Scissors" -> "Paper"
                 "Win" to "Paper", "Lose" to "Rock" -> "Scissors"
                 "Win" to "Scissors", "Lose" to "Paper" -> "Rock"
                 else -> error("error: outcome $outcome, oppoShape $oppoShape")
             }
-        }
     }
 
     fun getScore(): Int {
