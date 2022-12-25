@@ -1,6 +1,7 @@
 import java.io.File
 import kotlin.math.min
 import kotlin.math.max
+import kotlin.system.measureTimeMillis
 
 data class TaskComparison(val input: String) {
     private val task1: IntRange = getRange(input.split(',').first())
@@ -18,9 +19,9 @@ data class TaskComparison(val input: String) {
             (lowerLowerBound == task2.first && higherUpperBound == task2.last))
     }
 
-//    fun fullyContains(): Boolean {
-//        return (task1 - task2).isEmpty() || (task2 - task1).isEmpty()
-//    }
+    fun fullyContains2(): Boolean {
+        return (task1 - task2).isEmpty() || (task2 - task1).isEmpty()
+    }
 
     fun hasOverlap(): Boolean {
         return task1.intersect(task2).isNotEmpty()
@@ -48,8 +49,18 @@ fun main(args: Array<String>) {
             .size
     }
 
+    val timeInMillis_fc1 = measureTimeMillis {
+        taskComparisons.filter { elem: TaskComparison -> elem.fullyContains() }
+    }
+    val timeInMillis_fc2 = measureTimeMillis {
+        taskComparisons.filter { elem: TaskComparison -> elem.fullyContains2() }
+    }
+
     println("Part 1: ${part1()}")
     println("Part 2: ${part2()}")
+
+    println("Profiling: The operation took $timeInMillis_fc1 ms")
+    println("Profiling: The operation took $timeInMillis_fc2 ms")
 }
 
 
