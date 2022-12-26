@@ -2,12 +2,13 @@ import java.io.File
 
 data class Rucksack(val pouch1: String, val pouch2: String) {
     val duplicate: Char = pouch1.toSet().intersect(pouch2.toSet()).first()
-    val contents: String =  pouch1 + pouch2
+    val contents: String = pouch1 + pouch2
 }
+
 data class RucksackGroup(val rucksacks: List<Rucksack>) {
-    val duplicate: Char =  rucksacks
+    val duplicate: Char = rucksacks
         .map { it.contents.toSet() }
-        .reduce {acc, next -> acc.intersect(next)}
+        .reduce { acc, next -> acc.intersect(next) }
         .first()
 }
 
@@ -30,14 +31,14 @@ fun main(args: Array<String>) {
         val rucksacks = parseInput()
         return rucksacks
             .map { rucksack: Rucksack -> getPriority(rucksack.duplicate) }
-            .reduce {acc, score -> acc + score}
+            .reduce { acc, score -> acc + score }
     }
 
     fun part2(): Int {
         val rucksackGroups = parseInput().chunked(3).map { RucksackGroup(it) }
         return rucksackGroups
             .map { rucksackGroup: RucksackGroup -> getPriority(rucksackGroup.duplicate) }
-            .reduce {acc, score -> acc + score}
+            .reduce { acc, score -> acc + score }
     }
 
     println("Part 1: ${part1()}")
