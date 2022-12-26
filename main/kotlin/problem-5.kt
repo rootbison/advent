@@ -72,16 +72,18 @@ fun main(args: Array<String>) {
         val cargo = init()
         for (move in getMoves()) {
             val inFlightCrates = cargo.stacks[move.src].removeN(move.size)
-            println(inFlightCrates)
             cargo.stacks[move.dest].addN(inFlightCrates)
-            println("dest: ${cargo.stacks[move.dest]}")
-            println("src: ${cargo.stacks[move.src]}")
         }
         return cargo.getTopCrates().joinToString("")
     }
 
     fun part2(): String {
-        return "ABC"
+        val cargo = init()
+        for (move in getMoves()) {
+            val inFlightCrates = cargo.stacks[move.src].removeN(move.size)
+            cargo.stacks[move.dest].addN(inFlightCrates, preserveOrder = true)
+        }
+        return cargo.getTopCrates().joinToString("")
     }
 
     println("Part 1: ${part1()}")
