@@ -1,7 +1,6 @@
 import java.io.File
 
 data class CrateStack(val crates: ArrayDeque<Char>) {
-    // return LIFO-ordered Deque containing removed elements
     fun removeN(size: Int): ArrayDeque<Char> {
         val inFlight: ArrayDeque<Char> = ArrayDeque()
         for (i in 0 until size) {
@@ -28,7 +27,7 @@ data class CrateStack(val crates: ArrayDeque<Char>) {
 
 data class CargoCrane(val stacks: List<CrateStack>) {
     fun getTopCrates(): List<Char> {
-        return stacks.map {it.getTopCrate()}
+        return stacks.map { it.getTopCrate() }
     }
 
 }
@@ -39,7 +38,6 @@ data class Move(val input: String) {
     val src: Int = components[3].toInt() - 1    // 0-indexed
     val dest: Int = components[5].toInt() - 1   // 0-indexed
 }
-
 
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
@@ -66,7 +64,6 @@ fun main(args: Array<String>) {
             .split(NEWLINE_WINDOWS)
             .map { Move(it) }
     }
-
 
     fun part1(): String {
         val cargo = init()
