@@ -4,19 +4,19 @@ import kotlin.math.max
 import kotlin.system.measureTimeMillis
 
 data class TaskComparison(val input: String) {
-    private val task1: IntRange = getRange(input.split(',').first())
-    private val task2: IntRange = getRange(input.split(',').last())
+    private val task1: IntRange = input.split(',').first().toIntRange('-')
+    private val task2: IntRange = input.split(',').last().toIntRange('-')
 
-    private fun getRange(str: String): IntRange {
-        val result = str.split('-').map { it.toInt()}
-        return result.first() .. result.last()
+    private fun String.toIntRange(delimiter: Char): IntRange {
+        val components: List<Int> = this.split(delimiter, limit = 2).map { it.toInt() }
+        return components.first()..components.last()
     }
 
     fun fullyContains(): Boolean {
         val lowerLowerBound = min(task1.first, task2.first)
         val higherUpperBound = max(task1.last, task2.last)
         return ((lowerLowerBound == task1.first && higherUpperBound == task1.last) ||
-            (lowerLowerBound == task2.first && higherUpperBound == task2.last))
+                (lowerLowerBound == task2.first && higherUpperBound == task2.last))
     }
 
     fun fullyContains2(): Boolean {
