@@ -25,5 +25,3 @@ fun main(args: Array<String>) {
     println(part2())
 
 }
-
-

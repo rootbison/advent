@@ -59,5 +59,3 @@ fun main(args: Array<String>) {
     println("Profiling: The operation took $timeInMillis_fc1 ms")
     println("Profiling: The operation took $timeInMillis_fc2 ms")
 }
-
-
