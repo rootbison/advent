@@ -49,23 +49,23 @@ data class Round(val oppoShapeCode: Char, val selfShapeCode: Char? = null, val o
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
-    operator fun String.component1(): Char = this[0]
-    operator fun String.component2(): Char = this[1]
-    operator fun String.component3(): Char = this[2]
-
     fun parseInput(): String {
         return File("in/problem-2.txt").readText()
     }
 
     fun part1(): Int {
-        val rounds: List<Round> =  parseInput().split(NEWLINE_WINDOWS).map { Round(it[0], selfShapeCode = it[2]) }
+        val rounds: List<Round> =  parseInput()
+            .split(NEWLINE_WINDOWS)
+            .map { Round(it[0], selfShapeCode = it[2]) }
         return rounds
             .map { elem: Round -> elem.getScore() }
             .reduce {acc, score -> acc + score}
     }
 
     fun part2(): Int {
-        val rounds: List<Round> =  parseInput().split(NEWLINE_WINDOWS).map { Round(it[0], outcomeCode = it[2]) }
+        val rounds: List<Round> =  parseInput()
+            .split(NEWLINE_WINDOWS)
+            .map { Round(it[0], outcomeCode = it[2]) }
         return rounds
             .map { elem: Round -> elem.getScore() }
             .reduce {acc, score -> acc + score}

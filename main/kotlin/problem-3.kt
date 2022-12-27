@@ -35,7 +35,9 @@ fun main(args: Array<String>) {
     }
 
     fun part2(): Int {
-        val rucksackGroups = parseInput().chunked(3).map { RucksackGroup(it) }
+        val rucksackGroups = parseInput()
+            .chunked(3)
+            .map { RucksackGroup(it) }
         return rucksackGroups
             .map { rucksackGroup: RucksackGroup -> getPriority(rucksackGroup.duplicate) }
             .reduce { acc, score -> acc + score }
