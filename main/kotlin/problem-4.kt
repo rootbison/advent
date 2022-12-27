@@ -23,9 +23,7 @@ data class TaskComparison(val input: String) {
         return (task1 - task2).isEmpty() || (task2 - task1).isEmpty()
     }
 
-    fun hasOverlap(): Boolean {
-        return task1.intersect(task2).isNotEmpty()
-    }
+    fun hasOverlap() = task1.intersect(task2).isNotEmpty()
 }
 
 fun main(args: Array<String>) {

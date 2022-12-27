@@ -11,6 +11,7 @@ data class RucksackGroup(val rucksacks: List<Rucksack>) {
         .reduce { acc, next -> acc.intersect(next) }
         .single()
 }
+
 fun getPriority(char: Char): Int {
     // uppercase: 64 - 26
     return if (char.isUpperCase()) char.code - 38
