@@ -1,7 +1,7 @@
 import java.io.File
 
 data class Rucksack(val pouch1: String, val pouch2: String) {
-    val duplicate: Char = pouch1.toSet().intersect(pouch2.toSet()).first()
+    val duplicate: Char = pouch1.toSet().intersect(pouch2.toSet()).single()
     val contents: String = pouch1 + pouch2
 }
 
@@ -9,7 +9,7 @@ data class RucksackGroup(val rucksacks: List<Rucksack>) {
     val duplicate: Char = rucksacks
         .map { it.contents.toSet() }
         .reduce { acc, next -> acc.intersect(next) }
-        .first()
+        .single()
 }
 
 fun main(args: Array<String>) {
@@ -22,8 +22,9 @@ fun main(args: Array<String>) {
     }
 
     fun parseInput(): List<Rucksack> {
-        val text = File("in/problem-3.txt").readText()
-        return text.split(NEWLINE_WINDOWS)
+        return File("in/problem-3.txt")
+            .readText()
+            .split(NEWLINE_WINDOWS)
             .map { Rucksack(it.substring(0, it.length / 2), it.substring(it.length / 2)) }
     }
 
