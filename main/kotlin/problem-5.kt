@@ -65,23 +65,17 @@ fun main(args: Array<String>) {
             .map { Move(it) }
     }
 
-    fun part1(): String {
+    fun performMoves(preserveOrder: Boolean): String {
         val cargo = init()
         for (move in getMoves()) {
             val inFlightCrates = cargo.stacks[move.src].removeN(move.size)
-            cargo.stacks[move.dest].addN(inFlightCrates)
+            cargo.stacks[move.dest].addN(inFlightCrates, preserveOrder = preserveOrder)
         }
         return cargo.getTopCrates().joinToString("")
     }
 
-    fun part2(): String {
-        val cargo = init()
-        for (move in getMoves()) {
-            val inFlightCrates = cargo.stacks[move.src].removeN(move.size)
-            cargo.stacks[move.dest].addN(inFlightCrates, preserveOrder = true)
-        }
-        return cargo.getTopCrates().joinToString("")
-    }
+    fun part1() = performMoves(false)
+    fun part2() = performMoves(true)
 
     println("Part 1: ${part1()}")
     println("Part 2: ${part2()}")
