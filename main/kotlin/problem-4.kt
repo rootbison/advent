@@ -28,11 +28,10 @@ data class TaskComparison(val input: String) {
     }
 }
 
-
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
-    val taskComparisons: List<TaskComparison> = File("in/problem-4.txt")
+    val taskComparisons = File(FILEPATH_DAY_04)
         .readText()
         .split(NEWLINE_WINDOWS)
         .map { TaskComparison(it) }

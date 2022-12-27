@@ -19,17 +19,11 @@ data class CrateStack(val crates: ArrayDeque<Char>) {
         }
     }
 
-    fun getTopCrate(): Char {
-        return crates[crates.size - 1]
-    }
-
+    fun getTopCrate(): Char = crates[crates.size - 1]
 }
 
 data class CargoCrane(val stacks: List<CrateStack>) {
-    fun getTopCrates(): List<Char> {
-        return stacks.map { it.getTopCrate() }
-    }
-
+    fun getTopCrates() = stacks.map { it.getTopCrate() }
 }
 
 data class Move(val input: String) {
@@ -59,7 +53,7 @@ fun main(args: Array<String>) {
     }
 
     fun getMoves(): List<Move> {
-        return File("in/problem-5.txt")
+        return File(FILEPATH_DAY_05)
             .readText()
             .split(NEWLINE_WINDOWS)
             .map { Move(it) }

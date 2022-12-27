@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
     fun getIndexFollowingFirstUniqueSubString(length: Int) =
-        File("in/problem-6.txt")
+        File(FILEPATH_DAY_06)
             .readText()
             .windowed(size = length, step = 1)
             .map { it.toSet().size }

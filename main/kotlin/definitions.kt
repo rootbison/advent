@@ -1,2 +1,12 @@
 const val DOUBLE_NEWLINE_WINDOWS: String = "\r\n\r\n"
 const val NEWLINE_WINDOWS: String = "\r\n"
+
+const val FILEPATH_DAY_01: String = "in/problem-1.txt"
+const val FILEPATH_DAY_02: String = "in/problem-2.txt"
+const val FILEPATH_DAY_03: String = "in/problem-3.txt"
+const val FILEPATH_DAY_04: String = "in/problem-4.txt"
+const val FILEPATH_DAY_05: String = "in/problem-5.txt"
+const val FILEPATH_DAY_06: String = "in/problem-6.txt"
+const val FILEPATH_DAY_07: String = "in/problem-7.txt"
+const val FILEPATH_DAY_08: String = "in/problem-8.txt"
+const val FILEPATH_DAY_09: String = "in/problem-9.txt"

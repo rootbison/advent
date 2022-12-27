@@ -42,20 +42,19 @@ data class Round(val oppoShapeCode: Char, val selfShapeCode: Char? = null, val o
         }
     }
 
-    fun getScore(): Int {
-        return this.getShapeScore(selfShape) + getOutcomeScore()
-    }
+    fun getScore(): Int = this.getShapeScore(selfShape) + getOutcomeScore()
 }
 fun main(args: Array<String>) {
     println("Program arguments: ${args.joinToString()}")
 
-    fun parseInput(): String {
-        return File("in/problem-2.txt").readText()
+    fun parseInput(filepath: String = FILEPATH_DAY_02): List<String> {
+        return File(filepath)
+            .readText()
+            .split(NEWLINE_WINDOWS)
     }
 
     fun part1(): Int {
         val rounds: List<Round> =  parseInput()
-            .split(NEWLINE_WINDOWS)
             .map { Round(it[0], selfShapeCode = it[2]) }
         return rounds
             .map { elem: Round -> elem.getScore() }
@@ -64,7 +63,6 @@ fun main(args: Array<String>) {
 
     fun part2(): Int {
         val rounds: List<Round> =  parseInput()
-            .split(NEWLINE_WINDOWS)
             .map { Round(it[0], outcomeCode = it[2]) }
         return rounds
             .map { elem: Round -> elem.getScore() }
@@ -73,7 +71,6 @@ fun main(args: Array<String>) {
 
     println("Part 1: ${part1()}")
     println("Part 2: ${part2()}")
-
 }
 
 
