@@ -3,19 +3,16 @@ import java.io.File
 data class CrateStack(val crates: ArrayDeque<Char>) {
     fun removeN(size: Int): ArrayDeque<Char> {
         val inFlight: ArrayDeque<Char> = ArrayDeque()
-        for (i in 0 until size) {
+        repeat(size) {
             inFlight.addLast(crates.removeLast())
         }
         return inFlight
     }
 
     fun addN(payload: ArrayDeque<Char>, preserveOrder: Boolean = false) {
-        for (i in 0 until payload.size) {
-            if (preserveOrder) {
-                crates.addLast(payload.removeLast())
-            } else {
-                crates.addLast(payload.removeFirst())
-            }
+        repeat(payload.size) {
+            val current =  if (preserveOrder) payload.removeLast() else payload.removeFirst()
+            crates.addLast(current)
         }
     }
 
